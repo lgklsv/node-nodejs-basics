@@ -7,10 +7,7 @@ const __dirname = path.dirname(__filename);
 const fileToWrite = path.join(__dirname, 'files', 'fileToWrite.txt');
 
 const write = async () => {
-  const writeStream = fs.createWriteStream(fileToWrite);
-  process.stdin.on('data', data => {
-    writeStream.write(data);
-  });
+  process.stdin.pipe(fs.createWriteStream(fileToWrite));
 };
 
 await write();
