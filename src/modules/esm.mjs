@@ -2,7 +2,7 @@ import * as url from 'url';
 import path from 'path';
 import { release, version } from 'os';
 import { createServer as createServerHttp } from 'http';
-import('./files/c.js');
+import './files/c.js';
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -12,13 +12,13 @@ const random = Math.random();
 let unknownObject;
 
 if (random > 0.5) {
-  unknownObject = import('./files/a.json', {
+  unknownObject = await import('./files/a.json', {
     assert: {
       type: 'json',
     },
   });
 } else {
-  unknownObject = import('./files/b.json', {
+  unknownObject = await import('./files/b.json', {
     assert: {
       type: 'json',
     },
